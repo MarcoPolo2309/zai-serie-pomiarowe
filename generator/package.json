@@ -1,0 +1,8 @@
+{
+  "name": "zai-generator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "bin": { "zai-generator": "./generator.mjs" },
+  "engines": { "node": ">=20" }
+}

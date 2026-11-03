@@ -1,0 +1,19 @@
+# Lokalna baza PostgreSQL do developmentu i testów
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: zai
+      POSTGRES_PASSWORD: zai
+      POSTGRES_DB: zai
+    ports:
+      - "55432:5432"
+    volumes:
+      - zai_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zai -d zai"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+volumes:
+  zai_pgdata:

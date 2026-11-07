@@ -1,5 +1,5 @@
-# Blueprint Render.com – jedna usługa WWW (Docker) z darmowego planu.
-# Baza PostgreSQL jest zewnętrzna (Neon) – adres podajesz jako DATABASE_URL w panelu Render.
+# Blueprint Render.com – jedna usługa WWW (Docker) i darmowa baza PostgreSQL, oba w planie Free.
+# Uwaga: darmowa baza Render wygasa po 30 dniach od utworzenia.
 services:
   - type: web
     name: zai-serie-pomiarowe
@@ -13,8 +13,17 @@ services:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        sync: false          # wklej connection string z Neon (wersja bezpośrednia, nie "pooler")
+        fromDatabase:
+          name: zai-db
+          property: connectionString
       - key: ADMIN_USERNAME
         sync: false
       - key: ADMIN_PASSWORD
         sync: false
+
+databases:
+  - name: zai-db
+    plan: free
+    region: frankfurt
+    databaseName: zai
+    user: zai

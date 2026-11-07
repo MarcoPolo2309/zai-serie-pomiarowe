@@ -56,7 +56,7 @@ export async function buildApp(): Promise<FastifyInstance> {
       reply.header('Cache-Control', 'no-store');
       // Negocjacja treści: 406, gdy klient nie akceptuje JSON (przed uwierzytelnianiem)
       const accept = req.headers.accept;
-      if (typeof accept === 'string' && accept.trim() !== '' && !acceptsJson(accept)) {
+      if (req.url !== '/api/stream' && typeof accept === 'string' && accept.trim() !== '' && !acceptsJson(accept)) {
         throw new HttpError(406, 'Not Acceptable', 'API zwraca wyłącznie application/json');
       }
     }

@@ -104,3 +104,5 @@ td.actions { display: flex; gap: .5rem; border-bottom: 0; }
   tr { break-inside: avoid; }
   tr.selected { background: none; outline: 0; }
 }
+
+svg { flex-shrink: 0; }
